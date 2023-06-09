@@ -1,12 +1,12 @@
 #!/bin/bash
 
 LOGS_PATH="logs"
-LogPattern="/opt/hivemq-ce-2021.3/log/hivemq"
-container_name_pattern="mqttbrokerusdns"
-bucket="publish-related/USDNS-MQTT/mqtt/"
+LogPattern="<log path inside container>"
+container_name_pattern="<container_name>"
+bucket="<S3 Bucket folder URI>"
 
 # Find the files matching the pattern and extract the dates inside the container
-oldest_date=$(docker exec $(docker ps -aqf "name=$container_name_pattern") sh -c "ls -lt /opt/hivemq-ce-2021.3/log/hivemq.*.log | tail -n +2 | sed -E 's/.*hivemq\.([0-9]{4}-[0-9]{2}-[0-9]{2}).*/\1/' | sort | head -n 1")
+oldest_date=$(docker exec $(docker ps -aqf "name=$container_name_pattern") sh -c "ls -lt <log path inside container>.*.log | tail -n +2 | sed -E 's/.*hivemq\.([0-9]{4}-[0-9]{2}-[0-9]{2}).*/\1/' | sort | head -n 1")
 
 
 # Format the oldest date as %Y-%m-%d
