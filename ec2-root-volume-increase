@@ -2,9 +2,11 @@ Increase root volume in linux EC2 instance
 
 1.Run df -h to verify your root partition is full (100%)
 2.Run lsblk and then lsblk -f to get block device details
-3.sudo mount -o size=10M,rw,nodev,nosuid -t tmpfs tmpfs /tmp
+3.sudo mount -o size=10M,rw,nodev,nosuid -t tmpfs tmpfs /tmp (only when error occured)
 4.sudo growpart /dev/DEVICE_ID PARTITION_NUMBER
+ ex: sudo growpart /dev/nvme0n1 1
 5.lsblk to verify partition has expanded
 6.sudo resize2fs /dev/DEVICE_IDPARTITION_NUMBER
+ ex: sudo resize2fs /dev/nvme0n1p1
 7.Run df -h to verify your resized disk
 8.sudo umount /tmp
