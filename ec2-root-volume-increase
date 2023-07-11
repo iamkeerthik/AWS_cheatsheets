@@ -8,5 +8,8 @@ Increase root volume in linux EC2 instance
 5.lsblk to verify partition has expanded
 6.sudo resize2fs /dev/DEVICE_IDPARTITION_NUMBER
  ex: sudo resize2fs /dev/nvme0n1p1
+For amazon linux if you get error(resize2fs: Bad magic number in super-block)
+use:  xfs_growfs /dev/nvme0n1p1
+
 7.Run df -h to verify your resized disk
 8.sudo umount /tmp
